@@ -11,8 +11,12 @@ export default async function Command() {
 
   updateCommandMetadata({ subtitle: `Refreshing...` })
 
-  let {data} = await searchBookmarks(preferences)
-
-  cache.set(CACHE_KEY, JSON.stringify(data))
-  updateCommandMetadata({ subtitle: `Loaded ${data.length} links` })
+  try {
+    let {data} = await searchBookmarks(preferences)
+    cache.set(CACHE_KEY, JSON.stringify(data))
+    updateCommandMetadata({ subtitle: `Loaded ${data.length} links` })
+  } catch (ex) {
+    updateCommandMetadata({ subtitle: `Cannot refresh. Obsidian REST API Plugin not installed or configured?` })
+  }
+  
 }
