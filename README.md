@@ -2,8 +2,9 @@
 
 - Install the [Obsidan Local Rest API Plugin](https://github.com/coddingtonbear/obsidian-local-rest-api)
     - go to settings, copy the local token
-- Add the extension to Raycast
-- Configure the token
+- Add the extension to Raycast, configure the fully qualified vault path when prompted `/Users/user/Documents/Vault Path`
+
+- Optional: install the Advanced URI plugin if you want to directly open notes containing bookmarks directly from Raycast
 
 ## Usage
 
