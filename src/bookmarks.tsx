@@ -14,7 +14,8 @@ export interface Link {
 }
 
 export interface Preferences {
-  token: string
+  vault: string
+  tagName: string
 }
 
 type MarkdownLink = {

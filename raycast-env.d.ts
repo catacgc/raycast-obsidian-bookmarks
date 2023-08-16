@@ -8,8 +8,8 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
 type ExtensionPreferences = {
-  /** Obsidian Local Rest API Tokens - the Obsidian token from the Obsidian rest api plugin */
-  "token": string,
+  /** Obsidian Vault Path - the Obsidian Vault Path */
+  "vault": string,
   /** Tag Name - the tag name */
   "tagName"?: string
 }

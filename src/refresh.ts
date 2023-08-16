@@ -16,7 +16,8 @@ export default async function Command() {
     cache.set(CACHE_KEY, JSON.stringify(data))
     updateCommandMetadata({ subtitle: `Loaded ${data.length} links` })
   } catch (ex) {
-    updateCommandMetadata({ subtitle: `Cannot refresh. Obsidian REST API Plugin not installed or configured?` })
+    console.log(ex)
+    updateCommandMetadata({ subtitle: "Error: " + ex })
   }
   
 }

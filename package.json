@@ -24,12 +24,13 @@
   ],
   "preferences": [
     {
-      "name": "token",
-      "title": "Obsidian Local Rest API Tokens",
+      "name": "vault",
+      "title": "Obsidian Vault Path",
       "required": true,
-      "label": "Obsidian Local Rest API Token",
-      "type": "password",
-      "description": "the Obsidian token from the Obsidian rest api plugin"
+      "label": "Obsidian Vault Path",
+      "type": "textfield",
+      "placeholder": "/Users/username/Documents/Vault Path",
+      "description": "the Obsidian Vault Path"
     },
     {
       "name": "tagName",
