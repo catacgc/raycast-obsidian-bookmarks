@@ -19,9 +19,13 @@ export interface Preferences {
 }
 
 type MarkdownLink = {
-  text: string; url: string; markdownText: string; 
-  tags: string[]; keywords: string[];
-  subtitle: string; obsidianURI: string
+  text: string; 
+  url: string; 
+  markdownText: string; 
+  tags: string[]; 
+  keywords: string[];
+  subtitle: string; 
+  obsidianURI: string
 };
 
 function parseMarkdownLinks(markdown: Link): MarkdownLink[] {
@@ -30,18 +34,18 @@ function parseMarkdownLinks(markdown: Link): MarkdownLink[] {
   let markdownText = [...markdown.result.text.matchAll(linkRegex)]
 
   return markdownText.map(it => {
-    let subtitle = markdown.filename + ' ' + markdown.result.text
-    .replace(`[${it[1]}]`, '')
-    .replace(`(${it[2]})`, '') 
+    let textOnly = markdown.result.text
+    .replace(`[${it[1]}]`, it[1])
+    .replace(`(${it[2]})`, '')
 
     return {
-      text: it[1],
+      text: textOnly,
       url: it[2],
       markdownText: markdown.result.text,
       tags: markdown.result.tags,
       keywords: (markdown.result.text + '/' + markdown.filename).split(/[^a-z]/i),  // filename + text
       obsidianURI: `obsidian://advanced-uri?filename=${encodeURI(markdown.filename)}`,
-      subtitle: subtitle
+      subtitle: markdown.filename 
     }
   })
 }
