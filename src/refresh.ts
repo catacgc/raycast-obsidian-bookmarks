@@ -13,6 +13,8 @@ export default async function Command() {
 
   try {
     let {data} = await searchBookmarks(preferences)
+
+    data = data.filter(it => it.result.text.includes('#res'))
     cache.set(CACHE_KEY, JSON.stringify(data))
     updateCommandMetadata({ subtitle: `Loaded ${data.length} links` })
   } catch (ex) {

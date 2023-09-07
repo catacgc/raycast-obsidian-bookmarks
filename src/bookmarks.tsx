@@ -29,7 +29,7 @@ type MarkdownLink = {
 };
 
 function parseMarkdownLinks(markdown: Link): MarkdownLink[] {
-  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const linkRegex = /\[([^\]]+)\]\((.+)\)/g;
 
   let markdownText = [...markdown.result.text.matchAll(linkRegex)]
 
