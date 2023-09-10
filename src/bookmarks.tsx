@@ -24,7 +24,7 @@ type MarkdownLink = {
   markdownText: string; 
   tags: string[]; 
   keywords: string[];
-  subtitle: string; 
+  filename: string;
   obsidianURI: string
 };
 
@@ -45,7 +45,7 @@ function parseMarkdownLinks(markdown: Link): MarkdownLink[] {
       tags: markdown.result.tags,
       keywords: (markdown.result.text + '/' + markdown.filename).split(/[^a-z]/i),  // filename + text
       obsidianURI: `obsidian://advanced-uri?filename=${encodeURI(markdown.filename)}`,
-      subtitle: markdown.filename 
+      filename: markdown.filename
     }
   })
 }
@@ -73,14 +73,24 @@ export default function Command() {
     <List
       navigationTitle="Search bookmarks"
       searchBarPlaceholder="Search bookmarks"
+      isShowingDetail={true}
     >
       {links.map((item) => (
         <List.Item
           key={item.markdownText}
           title={item.text}
-          subtitle={{ value: item.subtitle, tooltip: item.url }}
+          // subtitle={{ value: item.subtitle, tooltip: item.url }}
           keywords={item.keywords}
           icon={Icon.Compass}
+          detail={
+            <List.Item.Detail markdown={`
+**${item.text}**
+            
+- url: ${item.url}
+- src: [${item.filename}](${item.obsidianURI})
+- tag: ${item.tags}
+            `} />
+          }
           actions={
             <ActionPanel>
               <Action.OpenInBrowser
@@ -104,9 +114,9 @@ export default function Command() {
 }
 
 function Item(props: { item: MarkdownLink }) {
-  let item = props.item
+  const item = props.item
   return <Action.OpenInBrowser
-    title="Open Notion Page"
+    title="Open Obsidian Page"
     url={item.obsidianURI}
     icon={Icon.Pencil}
   />
